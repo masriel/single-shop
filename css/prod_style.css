@@ -15,7 +15,9 @@ body {
     flex: 1;
     background-color: #fff;
     padding: 10px;
+    margin: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
 }
 
 .search-box {
@@ -27,7 +29,7 @@ body {
     font-size: 16px;
 }
 
-#product-list {
+.product-list {
     list-style: none;
     padding: 0;
 }
@@ -57,9 +59,30 @@ body {
     flex: 1;
     background-color: #fff;
     padding: 10px;
+    margin: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
 }
 
 .selected-product {
     text-align: center;
+}
+
+button {
+    background-color: #0071f0;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    font-family: sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button:active {
+    background-color: #003d80;
 }
