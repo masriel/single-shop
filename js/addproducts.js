@@ -8,14 +8,11 @@ $(document).ready(function() {
             data.forEach(function(product) {
                 let item = $('<li>').addClass('product-item');
                 let productInfo = $('<div>').addClass('product-info');
-
-                let productImage = $('<img>').attr('src', '../img/' + product.photo).attr('alt', product.name).addClass('product-image');
                 let productName = $('<h3>').text(product.name);
-                let productDescription = $('<p>').text(product.description);
                 let productPrice = $('<p>').text(product.price + ' $');
                 let chooseButton = $('<button>').text('Choose').attr('class', 'choose-button');
 
-                productInfo.append(productImage, productName, productDescription, productPrice);
+                productInfo.append(productName, productPrice);
                 item.append(productInfo, chooseButton);
                 prodList.append(item);
             });

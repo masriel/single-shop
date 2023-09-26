@@ -7,14 +7,40 @@ $(document).ready(function() {
 
     prodList.on('click', '.choose-button', function() {
         let productItem = $(this).closest('.product-item');
-        let productPhoto = productItem.find('img').attr('src');
         let productName = productItem.find('h3').text();
-        let productDescription = productItem.find('p').eq(0).text();
-        let productPrice = productItem.find('p').eq(1).text();
+        console.log(productName);
+        $.ajax({
+            type: 'POST',
+            url: '../scripts/getproductinfo.php',
+            data: { productName: productName },
+            dataType: 'json',
+            success: function(data) {
+                selectedProductPhoto.attr('src', '../img/' + data.photo);
+                selectedProductName.text(data.name);
+                selectedProductDescription.text(data.description);
+                selectedProductPrice.text(data.price + ' $');
+            },
+            error: function() {
+                alert('Произошла ошибка при запросе к серверу');
+            }
+        });
+    });
 
-        selectedProductPhoto.attr('src', productPhoto);
-        selectedProductName.text(productName);
-        selectedProductDescription.text(productDescription);
-        selectedProductPrice.text(productPrice);
+    $('.logout-button').on('click', function() {
+        $.ajax({
+            type: 'POST',
+            url: '../scripts/logout.php',
+            success: function(data) {
+                if (data === 'success') {
+                    window.location.href = '../pages/login.php';
+                } else {
+                    alert('Failed to log out. Please try again.');
+                }
+            },
+            error: function() {
+                alert('An error occurred while logging out. Please try again.');
+            }
+        });
     });
 });
+

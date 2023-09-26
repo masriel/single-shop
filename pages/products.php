@@ -12,6 +12,7 @@
             <input type="text" class="search-box" placeholder="Search...">
             <ul class="product-list"></ul>
             <script src="../js/addproducts.js"></script>
+            <button class="logout-button">Logout</button>
         </div>
         <div class="right-panel">
             <div class="selected-product">

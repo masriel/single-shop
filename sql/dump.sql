@@ -18,13 +18,12 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
-DROP DATABASE shop;
 --
 -- TOC entry 4851 (class 1262 OID 16398)
 -- Name: shop; Type: DATABASE; Schema: -; Owner: postgres
 --
 
-CREATE DATABASE shop WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE_PROVIDER = libc LOCALE = 'Russian_Russia.1251';
+CREATE DATABASE shop;
 
 
 ALTER DATABASE shop OWNER TO postgres;
@@ -96,7 +95,7 @@ CREATE TABLE public.users (
     id integer NOT NULL,
     username character varying(255) NOT NULL,
     login character varying(255) NOT NULL,
-    password character varying(255) NOT NULL,
+    password text NOT NULL,
     salt character varying(255) NOT NULL
 );
 
