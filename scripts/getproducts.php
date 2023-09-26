@@ -9,24 +9,15 @@
         if (!$result) echo "request execution error"; else {
             $products = array();
             while ($row = pg_fetch_assoc($result)) {
-                /*$product = array(
-                    'name' => $row['product_name'],
+                $product = array(
+                    'name' => $row['name'],
                     'description' => $row['description'],
                     'photo' => $row['photo'],
                     'price' => $row['price']
                 );
-                $products[] = $product;*/
-                echo '<li class="product-item">';
-                echo '<div class="product-info">';
-                echo '<img src="../img/' . $row['photo'] . '" class="product-image">';
-                echo '<h3>' . $row['name'] . '</h3>';
-                echo '<p>' . $row['description'] . '</p>';
-                echo '<p>' . $row['price'] . ' $</p>';
-                echo '</div>';
-                echo '<button class="choose-button">Choose</button>';
-                echo '</li>';
+                $products[] = $product;
             }
-            /*header('Content-Type: application/json');
-            echo json_encode($products);*/
+            header('Content-Type: application/json');
+            echo json_encode($products);
         }
     }

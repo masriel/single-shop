@@ -1,6 +1,17 @@
 <?php
 session_start();
 
+function generateSalt($length = 16) {
+    $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    $salt = '';
+
+    for ($i = 0; $i < $length; $i++) {
+        $salt .= $characters[random_int(0, strlen($characters) - 1)];
+    }
+
+    return $salt;
+}
+
 if (isset($_POST['login_button'])) {
     header("Location: ../pages/login.php");
     exit;
@@ -26,7 +37,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['signin_button'])) {
             if ($row) {
                 echo "User with this login already exists";
             } else {
-                $insert_query = "INSERT INTO users (username, login, password, salt) VALUES ('$username', '$login', '$password', 'salt')";
+                // Генерируем случайную соль
+                $salt = generateSalt(16);
+                // Хешируем пароль с солью
+                $hashedPassword = hash('sha256', $password . $salt);
+
+                $insert_query = "INSERT INTO users (username, login, password, salt) VALUES ('$username', '$login', '$hashedPassword', '$salt')";
                 $insert_result = pg_query($db_connection, $insert_query);
 
                 if ($insert_result) {
@@ -38,4 +54,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['signin_button'])) {
         }
     }
 }
-?>
+
