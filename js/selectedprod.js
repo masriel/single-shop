@@ -21,7 +21,7 @@ $(document).ready(function() {
                 selectedProductPrice.text(data.price + ' $');
             },
             error: function() {
-                alert('Произошла ошибка при запросе к серверу');
+                alert('Error');
             }
         });
     });
@@ -34,11 +34,11 @@ $(document).ready(function() {
                 if (data === 'success') {
                     window.location.href = '../pages/login.php';
                 } else {
-                    alert('Failed to log out. Please try again.');
+                    alert('Failed to log out');
                 }
             },
             error: function() {
-                alert('An error occurred while logging out. Please try again.');
+                alert('An error occurred while logging out');
             }
         });
     });

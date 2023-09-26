@@ -1,5 +1,5 @@
 <?php
-    $db_connection = pg_connect("host=localhost port=5432 dbname=shop user=postgres password=root");
+    require_once('../scripts/connection.php');
 
     if (!$db_connection) echo "database connection error"; else {
         $query = "SELECT id, name, photo, price, description FROM public.products;";

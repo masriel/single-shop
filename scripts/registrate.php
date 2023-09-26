@@ -17,12 +17,11 @@ if (isset($_POST['login_button'])) {
     exit;
 }
 
+require_once('../scripts/connection.php');
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['signin_button'])) {
     $username = $_POST['username'];
     $login = $_POST['login'];
     $password = $_POST['password'];
-
-    $db_connection = pg_connect("host=localhost port=5432 dbname=shop user=postgres password=root");
 
     if (!$db_connection) {
         echo "Database connection error";
